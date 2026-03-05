@@ -1,72 +1,499 @@
 <!DOCTYPE html>
 <html>
-<head
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D6LV4CEQ24"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
 
-  gtag('config', 'G-D6LV4CEQ24');
-</script>
-    <title>Nocturne Archive | Dark Academia Online Bookstore</title>
+<title>Nocturne Archive | Dark Academia Library</title>
 
-    <meta name="description" content="Nocturne Archive is a dark academia online bookstore featuring curated gothic literature and dark romance novels.">
+<meta name="description" content="A digital dark academia library for gothic literature and dark fantasy lovers.">
+<meta name="keywords" content="dark academia books, gothic literature, fantasy library">
+<meta name="author" content="Hannah Syafiah">
 
-    <meta name="keywords" content="dark academia bookstore, gothic literature collection, dark romance books online">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
-    <meta name="author" content="Hannah Syafiah">
+<style>
 
-    <!-- GOOGLE ANALYTICS CODE HERE -->
+html{
+scroll-behavior:smooth;
+}
 
+body{
+background:#1a1410;
+color:#e6d8b5;
+font-family:'Cinzel', Georgia, serif;
+margin:0;
+overflow-x:hidden;
+}
+
+/* floating dust */
+
+.dust{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background-image:radial-gradient(#d4af37 1px, transparent 1px);
+background-size:40px 40px;
+opacity:0.15;
+animation:floatDust 60s linear infinite;
+}
+
+@keyframes floatDust{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* candlelight */
+
+.candlelight{
+position:fixed;
+top:0;
+left:-50%;
+width:200%;
+height:100%;
+pointer-events:none;
+background:radial-gradient(circle at center, rgba(255,200,120,0.2) 0%, transparent 60%);
+animation:torchMove 18s linear infinite;
+}
+
+@keyframes torchMove{
+0%{transform:translateX(-25%);}
+50%{transform:translateX(25%);}
+100%{transform:translateX(-25%);}
+}
+
+/* header */
+
+header{
+text-align:center;
+padding:60px;
+border-bottom:1px solid #3b2a1f;
+}
+
+header h1{
+font-size:48px;
+letter-spacing:4px;
+}
+
+/* navigation */
+
+nav{
+text-align:center;
+padding:25px;
+}
+
+nav a{
+color:#d4af37;
+text-decoration:none;
+margin:0 15px;
+padding:10px 22px;
+border:1px solid #3b2a1f;
+transition:0.4s;
+}
+
+nav a:hover{
+background:#d4af37;
+color:#1a1410;
+box-shadow:0 0 15px #d4af37;
+}
+
+/* hero */
+
+.hero{
+text-align:center;
+padding:120px 20px;
+background-image:url("https://images.unsplash.com/photo-1507842217343-583bb7270b66");
+background-size:cover;
+background-position:center;
+}
+
+.hero h2{
+font-size:36px;
+background:rgba(0,0,0,0.6);
+display:inline-block;
+padding:20px;
+}
+
+.enter-btn{
+display:inline-block;
+margin-top:40px;
+padding:15px 40px;
+border:1px solid #d4af37;
+color:#e6d8b5;
+text-decoration:none;
+}
+
+.enter-btn:hover{
+background:#d4af37;
+color:#1a1410;
+box-shadow:0 0 20px #d4af37;
+}
+
+/* section */
+
+.section{
+padding:80px 10%;
+text-align:center;
+}
+
+/* bookshelf */
+
+.bookshelf{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:40px;
+padding:60px;
+background-image:url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+border-top:3px solid #3b2a1f;
+border-bottom:3px solid #3b2a1f;
+}
+
+.bookshelf img{
+width:150px;
+cursor:pointer;
+border:2px solid #3b2a1f;
+transition:0.3s;
+}
+
+.bookshelf img:hover{
+transform:scale(1.12) translateY(-6px);
+box-shadow:
+0 0 10px #d4af37,
+0 0 20px #d4af37,
+0 0 40px rgba(212,175,55,0.5);
+}
+
+/* footer */
+
+footer{
+text-align:center;
+padding:30px;
+border-top:1px solid #3b2a1f;
+}
+
+/* modal */
+
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.92);
+animation:fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.modal-content{
+background:#1a1410;
+margin:4% auto;
+padding:40px;
+width:65%;
+border:1px solid #d4af37;
+line-height:1.8;
+animation:popup 0.4s ease;
+}
+
+@keyframes popup{
+from{transform:translateY(40px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+.close-btn{
+cursor:pointer;
+float:right;
+color:#d4af37;
+}
+
+</style>
 </head>
 
-<body style="margin:0; font-family:Georgia; background-color:#1a1410; color:#e6d8b5;">
+<body>
 
-<!-- HEADER -->
-<div style="text-align:center; padding:60px; border-bottom:1px solid #3b2a1f;">
-    <h1 style="font-size:52px; letter-spacing:5px; margin:0;">
-        NOCTURNE ARCHIVE
-    </h1>
-    <p style="color:#bfa77a; margin-top:10px;">
-        A Curated Sanctuary for Dark Romance & Gothic Literature
-    </p>
+<div class="dust"></div>
+<div class="candlelight"></div>
+
+<header>
+<h1>NOCTURNE ARCHIVE</h1>
+<p>A Dark Academia Digital Library</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#collection">Library</a>
+<a href="#" onclick="openModal('aboutModal')">About</a>
+<a href="#" onclick="openModal('contactModal')">Contact</a>
+</nav>
+
+<section class="hero">
+<h2>Enter the Shadows of Literature</h2><br>
+<a class="enter-btn" href="#collection">Explore The Archive</a>
+</section>
+
+<section class="section">
+<h2>Library Inscription</h2>
+<p>“Books are a uniquely portable magic.”</p>
+</section>
+
+<section id="collection" class="section">
+
+<h2>The Library Collection</h2>
+
+<div class="bookshelf">
+
+<img src="images/a-deadly-education.jpg" onclick="openModal('m1')">
+<img src="images/a-study-in-drowning.jpg" onclick="openModal('m2')">
+<img src="images/an-education-in-malice.jpg" onclick="openModal('m3')">
+<img src="images/babel.jpg" onclick="openModal('m4')">
+<img src="images/house-of-marionne.jpg" onclick="openModal('m5')">
+<img src="images/ink-blood-sister-scribe.jpg" onclick="openModal('m6')">
+<img src="images/ninth-house.jpg" onclick="openModal('m7')">
+<img src="images/the-atlas-six.jpg" onclick="openModal('m8')">
+<img src="images/The-forest-demands-its-due.jpg" onclick="openModal('m9')">
+<img src="images/the-library-of-shadows.png" onclick="openModal('m10')">
+
 </div>
 
-<!-- HERO SECTION -->
-<div style="text-align:center; padding:100px;">
+</section>
 
-    <h2 style="font-size:32px; margin-bottom:20px;">
-        Step Into The Shadows of Storytelling
-    </h2>
+<footer>
+© 2026 Nocturne Archive
+</footer>
 
-    <p style="width:60%; margin:auto; line-height:1.8;">
-        An elegant digital bookstore crafted for readers who crave emotional intensity,
-        intellectual depth, and dark romance aesthetics.
-        Explore our curated collection of gothic and dark academia novels.
-    </p>
+<!-- ABOUT -->
 
-    <br><br>
+<div id="aboutModal" class="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal('aboutModal')">Close</span>
+<h2>About Nocturne Archive</h2>
+<p>Nocturne Archive is a digital library concept designed for lovers of dark academia, gothic fiction, and atmospheric fantasy novels.</p>
+</div>
+</div>
 
-    <a href="books.html"
-       onclick="gtag('event','enter_archive_click');"
-       style="padding:18px 45px;
-              background-color:#3b2a1f;
-              color:#e6d8b5;
-              border:1px solid #d4af37;
-              text-decoration:none;
-              font-size:16px;">
-        ENTER THE ARCHIVE
+<!-- CONTACT -->
+
+<div id="contactModal" class="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal('contactModal')">Close</span>
+<h2>Contact</h2>
+<a href="mailto:hannahsyafiah@example.com" style="border:1px solid #d4af37;padding:12px 25px;text-decoration:none;color:#e6d8b5;">Send Email</a>
+</div>
+</div>
+
+ <!-- ================= A DEADLY EDUCATION ================= -->
+    <div id="m1" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m1')">Close</span>
+    <h2>A Deadly Education</h2>
+    <p><strong>At A Glance:</strong> magical boarding school, sorcerers, deadly challenges, monsters</p>
+    
+    <p>Set at a magical boarding school where survival is earned, we follow junior year through the eyes of El — a powerful, dark sorceress struggling to control abilities strong enough to destroy her peers.</p>
+    
+    <p>Monsters lurk within the school walls. Graduation requires fighting through Lovecraftian horrors. Alliances mean survival.</p>
+    
+    <p>El plans to finally prove her strength — if Orion Lake would stop saving her before she can show it.</p>
+    
+    <a href="https://bookshop.org/p/books/a-deadly-education-a-novel-naomi-novik/5b95b42f2604b42e?ean=9780593128503&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_deadly_education');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
     </a>
+    </div>
+    </div>
+    
+    <!-- ================= A STUDY IN DROWNING ================= -->
+    <div id="m2" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m2')">Close</span>
+    <h2>A Study in Drowning</h2>
+    
+    <p><strong>At A Glance:</strong> academic rivals-to-lovers, fairy folklore, gothic mystery</p>
+    
+    <p>Effy Sayre, the only woman architecture student at her college, has long been haunted by visions of the Fairy King.</p>
+    
+    <p>When she wins a competition to redesign her favorite late author's estate, she arrives at a crumbling manor beside the sea — only to find her work challenged by a rival determined to dismantle everything she believes.</p>
+    
+    <p>As nightmares intensify, Effy must uncover truths about the manor, the author, and herself.</p>
+    
+    <a href="https://bookshop.org/p/books/a-study-in-drowning-ava-reid/f82893c9ed3addd9?ean=9780063211506&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_study_drowning');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= AN EDUCATION IN MALICE ================= -->
+    <div id="m3" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m3')">Close</span>
+    <h2>An Education in Malice</h2>
+    
+    <p><strong>At A Glance:</strong> dark historical fantasy, sapphic rivalry, vampire society</p>
+    
+    <p>At Saint Perpetua’s College, ambition is currency and secrets are sacred.</p>
+    
+    <p>Laura Sheridan finds herself entangled in a charged academic rivalry with the enigmatic Carmilla — under the shadow of a professor obsessed with power and blood.</p>
+    
+    <p>As rivalry deepens into obsession, Laura must confront her own hunger and how far she’s willing to go.</p>
+    
+    <a href="https://bookshop.org/p/books/an-education-in-malice-s-t-gibson/c194550e02f914a0?ean=9780316501453&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_malice');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= BABEL ================= -->
+    <div id="m4" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m4')">Close</span>
+    <h2>Babel</h2>
+    
+    <p><strong>At A Glance:</strong> historical fantasy, Oxford University, colonialism, revolution</p>
+    
+    <p>Robin Swift is taken from Canton to Oxford after tragedy, trained in languages to serve at Babel — the Royal Institute of Translation.</p>
+    
+    <p>Through silver-working — translation as magic — Britain maintains its global dominance.</p>
+    
+    <p>As racism, exploitation, and political unrest surface, Robin must choose between loyalty to Babel or revolution from within.</p>
+    
+    <a href="#" target="_blank" onclick="gtag('event','buy_babel');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= HOUSE OF MARIONNE ================= -->
+    <div id="m5" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m5')">Close</span>
+    <h2>House of Marionne</h2>
+    
+    <p><strong>At A Glance:</strong> debutante society, forbidden magic, secret elite</p>
+    
+    <p>Quell has spent her life running from the dark magic within her — until she is forced into a secret magical debutante society called the Order.</p>
+    
+    <p>To survive, she must pass three deadly rites and suppress the power that could both save and destroy her.</p>
+    
+    <a href="https://bookshop.org/p/books/house-of-marionne-j-elle/53c5833c001050f4?ean=9780593527702&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_marionne');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= INK BLOOD SISTER SCRIBE ================= -->
+    <div id="m6" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m6')">Close</span>
+    <h2>Ink Blood Sister Scribe</h2>
+    
+    <p><strong>At A Glance:</strong> magical books, secret libraries, sisters, deadly legacy</p>
+    
+    <p>Two estranged sisters guard a family library filled with ancient magical books.</p>
+    
+    <p>When their father dies mysteriously, they must reunite to uncover the truth — and stop those willing to kill for the books.</p>
+    
+    <a href="https://bookshop.org/p/books/ink-blood-sister-scribe-a-novel-emma-t-rzs/387a0accddad9fd4?ean=9780063253469&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_inkblood');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= NINTH HOUSE ================= -->
+    <div id="m7" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m7')">Close</span>
+    <h2>Ninth House</h2>
+    
+    <p><strong>At A Glance:</strong> Ivy League occult, murder mystery, ghosts</p>
+    
+    <p>Alex Stern — survivor and outsider — is offered a place at Yale to monitor its occult secret societies.</p>
+    
+    <p>When a murder occurs, she investigates connections between ritual magic and hidden power.</p>
+    
+    <a href="https://bookshop.org/p/books/ninth-house-leigh-bardugo/7431896927825709?ean=9781250751362&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_ninthhouse');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= THE ATLAS SIX ================= -->
+    <div id="m8" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m8')">Close</span>
+    <h2>The Atlas Six</h2>
+    
+    <p><strong>At A Glance:</strong> magicians, competition, elite society</p>
+    
+    <p>Six powerful magicians compete for five positions in the ultra-secret Alexandrian Society.</p>
+    
+    <p>The winner gains access to forbidden knowledge. The one rejected faces death.</p>
+    
+    <a href="https://bookshop.org/p/books/the-atlas-six-olivie-blake/32e18f555762cdd8?ean=9781250854544&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_atlassix');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= THE FOREST DEMANDS ITS DUE ================= -->
+    <div id="m9" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m9')">Close</span>
+    <h2>The Forest Demands Its Due</h2>
+    
+    <p><strong>At A Glance:</strong> boarding school, murder mystery, dark forest horror</p>
+    
+    <p>Douglas Jones attends an elite boarding school where a murdered student is erased from memory.</p>
+    
+    <p>Only Douglas remembers — and uncovering the truth awakens something ancient in the surrounding forest.</p>
+    
+    <a href="https://bookshop.org/p/books/the-forest-demands-its-due-kosoko-jackson/44a8755053a64633?ean=9780063260795&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_forest');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
+    
+    <!-- ================= THE LIBRARY OF SHADOWS ================= -->
+    <div id="m10" class="modal">
+    <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('m10')">Close</span>
+    <h2>The Library of Shadows</h2>
+    
+    <p><strong>At A Glance:</strong> paranormal romance, haunted boarding school</p>
+    
+    <p>Este Logano begins at a notoriously haunted school where students disappear and the library is forbidden after dark.</p>
+    
+    <p>Framed for stealing a rare book, she must partner with a ghost named Mateo to uncover a century-old mystery.</p>
+    
+    <a href="https://bookshop.org/p/books/the-library-of-shadows-rachel-moore/01a2ba6808b80bea?ean=9780063284630&next=t&next=t&affiliate=1568" target="_blank" onclick="gtag('event','buy_library');"
+    style="padding:12px 25px; border:1px solid #d4af37; color:#e6d8b5; text-decoration:none;">
+    Buy This Book
+    </a>
+    </div>
+    </div>
 
-</div>
+<!-- SIMPLE SHORT MODALS FOR OTHER BOOKS -->
+<script>
+function openModal(id){
+document.getElementById(id).style.display="block";
+}
 
-<!-- FOOTER -->
-<div style="text-align:center; padding:20px; border-top:1px solid #3b2a1f; font-size:14px;">
-    © 2026 Nocturne Archive | Created by Hannah Syafiah
-</div>
+function closeModal(id){
+document.getElementById(id).style.display="none";
+}
+</script>
 
 </body>
-
 </html>
